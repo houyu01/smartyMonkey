@@ -35,7 +35,7 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
             var defaultOptions = {
                 smConditional: regx(lDelimiter + '(\\/|(else))?\\s*(if|else)([\\s\\S]*?)' + rDelimiter),
                 smInterpolate: regx(lDelimiter + '\\$([^\\=]+?)(?:\\|@?([^\\&\\|]+))?(\\=[\\$]?([\\s\\S]+?))?' + rDelimiter),
-                smIterate: regx(lDelimiter + '(\\/)?foreach\\s*(?:\\$([\\s\\S]+?)\\s+as\\s+(?:\\$([^\\=\\>]+))?(?:\\=\\>)?\\$([\\s\\S]*?))?' + rDelimiter),
+                smIterate: regx(lDelimiter + '(\\/)?foreach\\s*(?:(?:\\$([\\s\\S]+?)\\s+as\\s+(?:\\$([^\\=\\>]+))?(?:\\=\\>)?\\$([\\s\\S]*?))|(from=[^\\%]*?))?' + rDelimiter),
                 smLoop: regx(lDelimiter + '(\\/)?for\\s*(?:\\$([\\s\\S]+)\\=\\s*([\\s\\S]+?)\\s*to\\s*([\\s\\S]+?)\\s*)?' + rDelimiter),
                 filters: '\\|\\@?(' + filters.join('|') + ')(?=[^\\{\\%]*?\\%\\})',
                 smComments: /\{\%\*[\s\S]*?\*\%\}/g,
@@ -49,7 +49,7 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
             c = merge(self.options, c);
             var cse = c.append ? START_END.append : START_END.split;
             var str = tmpl;
-            str = ("var out='" +
+            str = ("var smarty={foreach: {}};var out='" +
                 (c.strip
                  ? str.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g,' ').replace(/\r|\n|\t|\/\*[\s\S]*?\*\//g,'')
                  : str)
@@ -103,19 +103,22 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
                     c.smIterate || skip,
                     function (m, endtag, from, key, value, standerd) {
                         //console.log(arguments);return '';
+                        var defaultMatch = ['', null];
                         // 标准smarty foreach语法
-                        //if (standerd) {
-                            //from = /from=([^\s]*)/g.exec(standerd)[1];
-                            //value = /item=([^\s]*)/g.exec(standerd)[1];
-                            //key = /key=([^\s]*)/g.exec(standerd)[1];
-                            //name = /name=([^\s]*)/g.exec(standerd)[1];
-                        //    return '';
-                        //}
+                        if (standerd) {
+                            from = (/from=\$([^\s]*)/g.exec(standerd) || defaultMatch)[1];
+                            value = (/item=([^\s]*)/g.exec(standerd) || defaultMatch)[1];
+                            key = (/key=([^\s]*)/g.exec(standerd) || defaultMatch)[1];
+                            name = (/name=([^\s]*)/g.exec(standerd) || defaultMatch)[1];
+                        }
                         if (endtag) return "';} } out+='";
                         sid += 1; indv = value || "i" + sid;from = unescape(from);
                         return "';var arr" + sid + "=" + from 
-                        + ";if(arr" + sid + "){var " + indv + "," + (key ||'key') + "=-1;"
+                        + ";if(arr" + sid + "){"
+                        + (name ? "smarty.foreach." + name + "={index: -1};" : "")
+                        + "var " + indv + "," + (key || 'key') + "=-1;"
                         + "for(" + (key||'key') + " in arr" + sid + "){" 
+                        + (name ? "smarty.foreach." + name + ".index++;" : "")
                         + value + "=arr" + sid + "[" + (key||'key') + "];out+='";
                     }
                 )
@@ -128,7 +131,7 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
                      return str;
                  })
             + "';return out;");
-            return new Function(c.varname, str);;
+            return new Function(c.varname, str);
         }
     };
     
@@ -160,6 +163,5 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
     function regx(str, set) {
         return new RegExp(str, set || 'g');
     }
-
 
 })(this);
