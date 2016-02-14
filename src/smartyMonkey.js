@@ -7,8 +7,8 @@
 
 (function (global) {
     var START_END = {
-append: { start: "'+(", end: ")+'", endencode: "||'').toString().encodeHTML()+'" },
-split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encodeHTML();out+='"}
+        append: { start: "'+(", end: ")+'", endencode: "||'').toString()+'" },
+        split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString();out+='"}
     };
     var skip = /$^/;
     // 定义临时变量的话，要尽量不重名
@@ -74,7 +74,7 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
                                 code = code + self.filterMap[escaper];
                             }
                         }
-                        var output = cse.start + unescape(code) + ").toString().encodeHTML()+'";
+                        var output = cse.start + unescape(code) + ").toString()+'";
                         // 如果是赋值语句的话
                         if (assign) {
                             output = "';var " + unescape(code + '=' + variable) + ";out+='";
@@ -134,19 +134,23 @@ split:  { start: "';out+=(", end: ");out+='", endencode: "||'').toString().encod
             return new Function(c.varnames, str);
         }
     };
-    
+
     var _globals = (function(){ return this || (0,eval)("this"); }());
+    
+    function create(options) {
+        return new smartyMonkey(options);           
+    }
 
     if (typeof module !== "undefined" && module.exports) {
         module.exports = {
-            create: function (options) {
-                return new smartyMonkey(options);           
-            }
+            create: create
         }
     } else if (typeof define === "function" && define.amd) {
         define(function(){return new smartyMonkey();});
     } else {
-        _globals.smartyMonkey = new smartyMonkey();
+        _globals.smartyMonkey = {
+            create: create
+        }
     }
 
     function unescape(code) {
