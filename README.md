@@ -21,5 +21,6 @@ fs.readFile(<br/>
     }<br/>
 );<br/>
 
+
 3. 输出：<br/>
 hello monkey
