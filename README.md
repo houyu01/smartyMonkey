@@ -75,7 +75,7 @@ smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和�
 var smartyMonkey = require('../../src/smartyMonkey');<br/>
 var fs = require('fs');<br/>
 fs.readFile(<br/>
-&emsp;'./loop.tpl',<br/>
+&emsp;'./extend.tpl',<br/>
 &emsp;utf-8',<br/>
 &emsp;function (err, data) {<br/>
 &emsp;&emsp;var sm = smartyMonkey.create({<br/>
@@ -93,3 +93,11 @@ fs.readFile(<br/>
 &emsp;&emsp;console.log(out);<br/>
 &emsp;}<br/> 
 );<br/>
+
+输入(extend.tpl)：
+{%*test test*%}
+
+输出：
+-----注释替换-----
+
+我们通过在create的时候添加regxs与execFns，来增加/替换 替换规则与替换函数。可以达到对语法的扩充。
