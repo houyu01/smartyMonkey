@@ -19,7 +19,7 @@ var sm = smartyMonkey.create();<br/>
 var tpl_fn = sm.compile(data);<br/>
 var out = tpl_fn('monkey');<br/>
 &#60;&#47;script&#62;
-<br/>
+<br/><br/>
 小贴士(Tips)：<br/>
 &emsp;在实际使用过程中，如果是在客户端编译的话，那么我们肯定要把模板的源代码传到客户端，但是我们写的模板代码，会在服务端被smarty解析掉，所以，为了把模板源代码传送到客户端，我们可以使用smarty的literal标签，防止自己的smarty模板在服务端被解析掉。<br/>
 
