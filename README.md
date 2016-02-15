@@ -123,6 +123,9 @@ b is :test
 a is :test
 new a is: cval
 
+###⑤ 多个参数
+
+
 
 # 扩展(extend):
 smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和处理器。<br/>
