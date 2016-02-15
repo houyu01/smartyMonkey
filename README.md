@@ -31,3 +31,17 @@ hello monkey
 &emsp;&lt;div&gt;key is: {%$key%}&lt;/div&gt;<br/>
 &emsp;&lt;div&gt;val is: {%$value%}&lt;/div&gt;<br/>
 {%/foreach%}<br/>
+
+2. 接着我们编译一下含有foreach循环的模板(index.js)：
+var smartyMonkey = require('../../src/smartyMonkey');<br/>
+var fs = require('fs');<br/>
+fs.readFile(<br/>
+&emsp;'./loop.tpl',<br/>
+&emsp;'utf-8',<br/>
+&emsp;function (err, data) {<br/>
+&emsp;&emsp;sm = smartyMonkey.create();<br/>
+&emsp;&emsp;var tpl_fn = sm.compile(data, {varnames: ['loop1']});<br/>
+&emsp;&emsp;var out = tpl_fn(['h', 'e', 'l', 'l', 'o']);<br/>
+&emsp;&emsp;console.log(out);<br/>
+&emsp;}<br/>
+);<br/>
