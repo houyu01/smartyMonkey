@@ -13,12 +13,11 @@ var out = tpl_fn('monkey');<br/>
 <br/>
 在客户端(浏览器环境下)，smartyMonkey会暴露一个smartyMonkey对象到执行js的上下文中，一般是window，这个对象同样有一个create方法：<br/>
 &#60;script src=&#34;.&#47;smartyMonkey.js&#34;&#62;&#60;&#47;script&#62;<br/>
-&#60;script&#62;
+&#60;script&#62;<br/>
 var smartyMonkey = window.smartyMonkey<br/>
 var sm = smartyMonkey.create();<br/>
 var tpl_fn = sm.compile(data);<br/>
 var out = tpl_fn('monkey');<br/>
-<br/>
 &#60;&#47;script&#62;
 
 ① 输出(print)<br/>
