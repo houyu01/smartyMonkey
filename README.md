@@ -71,31 +71,23 @@ fs.readFile(<br/>
 
 ③ 条件语句(condition)
 模板中的代码(code in template)：
-{%if $a%}
+{%if $a%}<br/>
+    this is a:{%$a%}<br/>
+{%else%}<br/>
+    there is no a<br/>
+{%/if%}<br/>
 
-    this is a:{%$a%}
-    
-{%else%}
+.....<br/>
+var tpl_fn = sm.compile(data, {varnames: ['a']});<br/>
+var out = tpl_fn('aval');<br/>
+console.log('has a:', out);<br/>
+var out = tpl_fn();<br/>
+console.log('no a:', out);<br/>
+.....<br/>
 
-    there is no a
-    
-{%/if%}
-
-.....
-
-var tpl_fn = sm.compile(data, {varnames: ['a']});
-
-var out = tpl_fn('aval');
-console.log('has a:', out);
-var out = tpl_fn();
-console.log('no a:', out);
-.....
-
-输出：
-
-has a:  this is a:aval
-
-no a:  there is no a
+输出：<br/>
+has a:  this is a:aval<br/>
+no a:  there is no a<br/>
 
 
 # 扩展(extend):
