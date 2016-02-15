@@ -3,6 +3,7 @@
  * @author houyu <houyu01@baidu.com>
  * @date 2015-05-15
  * @desc compile smarty lex with js
+ * @version 1.0
  */
 
 (function (global) {
