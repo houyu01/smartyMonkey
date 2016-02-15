@@ -1,5 +1,5 @@
 # smartyMonkey
-用js解析smarty语法的模板，达到服务端smarty与客户端共享同一套模板的目的
+用js解析smarty语法的模板，达到服务端smarty与客户端共享同一套模板的目的<br/>
 analysis smarty's grammar with js, then you can use smarty both on server and client
 
 # 如何使用(how to use)
