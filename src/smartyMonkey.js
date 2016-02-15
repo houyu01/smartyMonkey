@@ -49,6 +49,7 @@
             };
 
             self.set = merge(defaultSet, options.set);
+            self.filterMap = merge(self.filterMap, options.filterMap);
             self.regxs = merge(defaultRegxs, options.regxs);
             self.execFns = merge(self.getDefaultExecFns(self.set), options.execFns);
         },
