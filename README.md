@@ -11,14 +11,14 @@ analysis smarty's grammar with js, then you can use smarty both on server and cl
 var smartyMonkey = require('../../src/smartyMonkey');<br/>
 var fs = require('fs');<br/>
 fs.readFile(<br/>
-    './back.tpl',<br/>
-    'utf-8',<br/>
-    function (err, data) {<br/>
-        sm = smartyMonkey.create();<br/>
-        var tpl_fn = sm.compile(data);<br/>
-        var out = tpl_fn('monkey');<br/>
-        console.log(out);<br/>
-    }<br/>
+>'./back.tpl',<br/>
+>'utf-8',<br/>
+>function (err, data) {<br/>
+>>sm = smartyMonkey.create();<br/>
+>>var tpl_fn = sm.compile(data);<br/>
+>>var out = tpl_fn('monkey');<br/>
+>>console.log(out);<br/>
+>>}<br/>
 );<br/>
 
 
