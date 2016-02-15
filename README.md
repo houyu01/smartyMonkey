@@ -123,8 +123,49 @@ b is :test
 a is :test
 new a is: cval
 
-###⑤ 多个参数
+###⑤ 多个参数(multiple parameters)<br/>
+smartyMonkey支持传入多个参数，只要compile的时候，指定第二个参数即可：<br/>
+1. 模板：<br/>
+a is {%$a%}<br/>
+b is {%$b%}<br/>
+c is {%$c%}<br/>
+<br/>
+2.调用：<br/> 
+.....<br/>
+var tpl_fn = sm.compile(data, {varnames: ['a', 'b', 'c']});<br/>
+var out = tpl_fn('aval', [1,2,3,4], 99);<br/>
+console.log(out);<br/>
+.....<br/>
+3. 输出：<br/>
+a is avalb is 1,2,3,4c is 99<br/>
 
+###⑥ 过滤器(filter)<br/>
+可以在模板中增加过滤器与过滤器所对应的函数，或语句。内置解析过滤器的只有一个count，被解析为js的.length
+1. 模板：<br/>
+a's length is: {%$a|count%}
+2.调用：<br/> 
+.....<br/>
+var tpl_fn = sm.compile(data, {varnames: ['a']});<br/>
+var out = tpl_fn('aval');<br/>
+console.log(out);<br/>
+.....<br/>
+3. 输出：<br/>
+a's length is: 4
+
+注：我们可以扩展filter，
+例：
+1. 模板：<br/>
+{%$a|encodeURIComponent%}
+2.调用：<br/> 
+var sm = smartyMonkey.create({<br/> 
+&emsp;filterMap: {<br/> 
+&emsp;&emsp;encodeURIComponent: function (code) {<br/> 
+&emsp;&emsp;&emsp;return 'encodeURIComponent(a)';<br/> 
+&emsp;&emsp;}<br/> 
+&emsp;}<br/> 
+}); <br/> 
+3. 输出：<br/>
+http%3A%2F%2Fwww.baidu.com%2Fs%3Fwd%3DsmartyMonkey
 
 
 # 扩展(extend):
