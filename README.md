@@ -77,6 +77,7 @@ fs.readFile(<br/>
     there is no a<br/>
 {%/if%}<br/>
 
+调用：<br/>
 .....<br/>
 var tpl_fn = sm.compile(data, {varnames: ['a']});<br/>
 var out = tpl_fn('aval');<br/>
