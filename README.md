@@ -70,26 +70,26 @@ fs.readFile(<br/>
 
 
 # 扩展
-smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和处理器。
-例：
-var smartyMonkey = require('../../src/smartyMonkey');
-var fs = require('fs');
-fs.readFile(
-&emsp;'./loop.tpl',
-&emsp;utf-8',
-&emsp;function (err, data) {
-&emsp;&emsp;var sm = smartyMonkey.create({
-&emsp;&emsp;&emsp;regxs: {
-&emsp;&emsp;&emsp;&emsp;smComments: /\{\%\*[\s\S]*?\*\%\}/g
-&emsp;&emsp;&emsp;},  
-&emsp;&emsp;&emsp;execFns: {
-&emsp;&emsp;&emsp;&emsp;smComments: function () {
-&emsp;&emsp;&emsp;&emsp;&emsp;return '-----注释替换-----';
-&emsp;&emsp;&emsp;&emsp;}   
-&emsp;&emsp;&emsp;}   
-&emsp;&emsp;}); 
-&emsp;&emsp;var tpl_fn = sm.compile(data, {varnames: ['loop1', 'a']});
-&emsp;&emsp;var out = tpl_fn(['h', 'e', 'l', 'l', 'o'], '19');
-&emsp;&emsp;console.log(out);
-&emsp;}   
-);
+smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和处理器。<br/>
+例：<br/>
+var smartyMonkey = require('../../src/smartyMonkey');<br/>
+var fs = require('fs');<br/>
+fs.readFile(<br/>
+&emsp;'./loop.tpl',<br/>
+&emsp;utf-8',<br/>
+&emsp;function (err, data) {<br/>
+&emsp;&emsp;var sm = smartyMonkey.create({<br/>
+&emsp;&emsp;&emsp;regxs: {<br/>
+&emsp;&emsp;&emsp;&emsp;smComments: /\{\%\*[\s\S]*?\*\%\}/g<br/>
+&emsp;&emsp;&emsp;},<br/>
+&emsp;&emsp;&emsp;execFns: {<br/>
+&emsp;&emsp;&emsp;&emsp;smComments: function () {<br/>
+&emsp;&emsp;&emsp;&emsp;&emsp;return '-----注释替换-----';<br/>
+&emsp;&emsp;&emsp;&emsp;}<br/>
+&emsp;&emsp;&emsp;}<br/>
+&emsp;&emsp;});<br/>
+&emsp;&emsp;var tpl_fn = sm.compile(data, {varnames: ['loop1', 'a']});<br/>
+&emsp;&emsp;var out = tpl_fn(['h', 'e', 'l', 'l', 'o'], '19');<br/>
+&emsp;&emsp;console.log(out);<br/>
+&emsp;}<br/> 
+);<br/>
