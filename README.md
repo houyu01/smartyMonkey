@@ -3,7 +3,7 @@
 analysis smarty's grammar with js, then you can use smarty both on server and client
 
 # 如何使用(how to use)
-
+① 输出(print)<br/>
 1. 首先，我们要写一个模板(hello.tpl):<br/>
     hello {%\*test\*%}{%$it%}
 
@@ -24,3 +24,10 @@ fs.readFile(<br/>
 
 3. 输出：<br/>
 hello monkey
+
+② 循环(loop)<br/>
+1. 首先，我们要写一个模板(loop.tpl):<br/>
+{%foreach $loop1 as $key => $value%}<br/>
+&emsp;<div>key is: {%$key%}</div><br/>
+&emsp;<div>val is: {%$value%}</div><br/>
+{%/foreach%}<br/>
