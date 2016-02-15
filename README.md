@@ -20,6 +20,8 @@ var tpl_fn = sm.compile(data);<br/>
 var out = tpl_fn('monkey');<br/>
 &#60;&#47;script&#62;
 
+
+# 目前支持的smarty语法(current support grammer)：
 ① 输出(print)<br/>
 1. 首先，我们要写一个模板(hello.tpl):<br/>
     hello {%\*test\*%}{%$it%}
