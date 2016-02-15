@@ -20,6 +20,7 @@ var tpl_fn = sm.compile(data);<br/>
 var out = tpl_fn('monkey');<br/>
 <br/>
 在客户端(浏览器环境下)，smartyMonkey会暴露一个smartyMonkey对象到执行js的上下文中，一般是window，这个对象同样有一个create方法：<br/>
+on a client enviroment, you include smartyMonkey in your page, and then smartyMonky will export a object to window, this object is window.smartyMonkey, it also have a create method, which can create a instance of smartyMonkey<br/>
 &#60;script src=&#34;.&#47;smartyMonkey.js&#34;&#62;&#60;&#47;script&#62;<br/>
 &#60;script&#62;<br/>
 var smartyMonkey = window.smartyMonkey<br/>
@@ -212,3 +213,6 @@ fs.readFile(<br/>
 
 输出：
 -----注释替换-----
+
+如有任何问题，请及时联系
+if you has any question please contact with me
