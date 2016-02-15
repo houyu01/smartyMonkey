@@ -71,9 +71,9 @@ fs.readFile(<br/>
 foreach的另一种写法：<br/>
 模板：<br/>
 {%foreach from=$loop1 key=key item=value name=loop1%}<br/>
-&#60;div&#62;key is: {%$key%}&#60;&#47;div&#62;<br/>
-&#60;div&#62;val is: {%$value%}&#60;&#47;div&#62;<br/>
-&#60;div&#62;index is: {%$smarty.foreach.loop1.index%}&#60;&#47;div&#62;<br/>
+&emsp;&#60;div&#62;key is: {%$key%}&#60;&#47;div&#62;<br/>
+&emsp;&#60;div&#62;val is: {%$value%}&#60;&#47;div&#62;<br/>
+&emsp;&#60;div&#62;index is: {%$smarty.foreach.loop1.index%}&#60;&#47;div&#62;<br/>
 {%/foreach%}<br/>
 调用：<br/>
 同上<br/><br/>
