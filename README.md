@@ -67,3 +67,29 @@ fs.readFile(<br/>
 
 3. 输出：<br/>
 &#60;div&#62;key is: 0&#60;&#47;div&#62; &#60;div&#62;val is: h&#60;&#47;div&#62; &#60;div&#62;key is: 1&#60;&#47;div&#62; &#60;div&#62;val is: e&#60;&#47;div&#62; &#60;div&#62;key is: 2&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 3&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 4&#60;&#47;div&#62; &#60;div&#62;val is: o&#60;&#47;div&#62;
+
+
+# 扩展
+smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和处理器。
+例：
+var smartyMonkey = require('../../src/smartyMonkey');
+var fs = require('fs');
+fs.readFile(
+&emsp;'./loop.tpl',
+&emsp;utf-8',
+&emsp;function (err, data) {
+&emsp;&emsp;var sm = smartyMonkey.create({
+&emsp;&emsp;&emsp;regxs: {
+&emsp;&emsp;&emsp;&emsp;smComments: /\{\%\*[\s\S]*?\*\%\}/g
+&emsp;&emsp;&emsp;},  
+&emsp;&emsp;&emsp;execFns: {
+&emsp;&emsp;&emsp;&emsp;smComments: function () {
+&emsp;&emsp;&emsp;&emsp;&emsp;return '-----注释替换-----';
+&emsp;&emsp;&emsp;&emsp;}   
+&emsp;&emsp;&emsp;}   
+&emsp;&emsp;}); 
+&emsp;&emsp;var tpl_fn = sm.compile(data, {varnames: ['loop1', 'a']});
+&emsp;&emsp;var out = tpl_fn(['h', 'e', 'l', 'l', 'o'], '19');
+&emsp;&emsp;console.log(out);
+&emsp;}   
+);
