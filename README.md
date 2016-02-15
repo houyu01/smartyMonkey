@@ -5,7 +5,7 @@ analysis smarty's grammar with js, then you can use smarty both on server and cl
 # 如何使用(how to use)
 
 1. 首先，我们要写一个模板(hello.tpl):<br/>
-    hello {%*test*%}{%$it%}
+    hello {%\*test\*%}{%$it%}
 
 2. 然后，我们调用smatyMonkey对模板进行编译，及使用：<br/>
 var smartyMonkey = require('../../src/smartyMonkey');<br/>
