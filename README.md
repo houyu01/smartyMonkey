@@ -28,6 +28,6 @@ hello monkey
 ② 循环(loop)<br/>
 1. 首先，我们要写一个模板(loop.tpl):<br/>
 {%foreach $loop1 as $key => $value%}<br/>
-&emsp;<div>key is: {%$key%}</div><br/>
-&emsp;<div>val is: {%$value%}</div><br/>
+&emsp;&lt;div&gt;key is: {%$key%}&lt;/div&gt;<br/>
+&emsp;&lt;div&gt;val is: {%$value%}&lt;/div&gt;<br/>
 {%/foreach%}<br/>
