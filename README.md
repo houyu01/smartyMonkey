@@ -22,7 +22,7 @@ var out = tpl_fn('monkey');<br/>
 
 
 # 目前支持的smarty语法(current support grammer)：
-① 输出(print)<br/>
+###① 输出(print)<br/>
 1. 首先，我们要写一个模板(hello.tpl):<br/>
     hello {%\*test\*%}{%$it%}
 
@@ -44,7 +44,7 @@ fs.readFile(<br/>
 3. 输出：<br/>
 hello monkey
 
-② 循环(loop)<br/>
+###② 循环(loop)<br/>
 1. 首先，我们要写一个模板(loop.tpl):<br/>
 {%foreach $loop1 as $key => $value%}<br/>
 &emsp;&lt;div&gt;key is: {%$key%}&lt;/div&gt;<br/>
@@ -69,7 +69,7 @@ fs.readFile(<br/>
 &#60;div&#62;key is: 0&#60;&#47;div&#62; &#60;div&#62;val is: h&#60;&#47;div&#62; &#60;div&#62;key is: 1&#60;&#47;div&#62; &#60;div&#62;val is: e&#60;&#47;div&#62; &#60;div&#62;key is: 2&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 3&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 4&#60;&#47;div&#62; &#60;div&#62;val is: o&#60;&#47;div&#62;
 
 
-③ 条件语句(condition)<br/>
+###③ 条件语句(condition)<br/>
 模板中的代码(code in template)：
 {%if $a%}<br/>
     this is a:{%$a%}<br/>
@@ -90,7 +90,7 @@ console.log('no a:', out);<br/>
 has a:  this is a:aval<br/>
 no a:  there is no a<br/>
 
-④ 赋值(interpolate)<br/>
+###④ 赋值(interpolate)<br/>
 模板(interpolate.tpl)：<br/>
 {%$b = 'test'%}<br/>
 b is :{%$b%}<br/>
