@@ -152,10 +152,10 @@ console.log(out);<br/>
 3. 输出：<br/>
 a's length is: 4
 
-注：我们可以扩展filter，
-例：
+注：我们可以通过扩展filter，来增加模板的功能<br/>
+例：<br/>
 1. 模板：<br/>
-{%$a|encodeURIComponent%}
+{%$a|encodeURIComponent%}<br/>
 2.调用：<br/> 
 var sm = smartyMonkey.create({<br/> 
 &emsp;filterMap: {<br/> 
