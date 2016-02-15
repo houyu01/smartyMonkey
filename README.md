@@ -1,18 +1,18 @@
 # smartyMonkey
 用js解析smarty语法的模板，达到服务端smarty与客户端共享同一套模板的目的<br/>
-analysis smarty's grammar with js, then you can use smarty both on server and client<br/>
+analysis smarty's grammar with js, then you can use smarty both on server and client<br/><br/>
 非常感谢DOT引擎，其实smartyMonkey的思路和很多写法都借鉴了DOT。<br/>
 安装(install)：<br/>
 可以通过npm安装(you can install with npm)：<br/>
-npm install smartymonkey<br/>
+npm install smartymonkey<br/><br/>
 或者直接下载使用。<br/>
-or just download it<br/>
+or just download it<br/><br/>
 
 # 如何使用(how to use)：
 在服务端(node环境下)我们可以直接引用smartyMonkey模块，require('src/smartyMonkey');<br/>
 该模块的导出，是一个create方法，可以创建smartyMonkey的实例<br/>
 in a server enviroment(node enviroment)，we can just require smartyMonkey.require('src/smartyMonkey');<br/>
-this module,export a create method, which can create a instance of smartyMonkey<br/>
+this module,export a create method, which can create a instance of smartyMonkey<br/><br/>
 如(for example)：<br/>
 var smartyMonkey = require('smartyMonkey');<br/>
 var sm = smartyMonkey.create();<br/>
