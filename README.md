@@ -157,13 +157,13 @@ a's length is: 4
 1. 模板：<br/>
 {%$a|encodeURIComponent%}
 2.调用：<br/> 
-var sm = smartyMonkey.create({
-&emsp;filterMap: {
-&emsp;&emsp;encodeURIComponent: function (code) {
-&emsp;&emsp;&emsp;return 'encodeURIComponent(a)';
-&emsp;&emsp;}   
-&emsp;}
-}); 
+var sm = smartyMonkey.create({<br/> 
+&emsp;filterMap: {<br/> 
+&emsp;&emsp;encodeURIComponent: function (code) {<br/> 
+&emsp;&emsp;&emsp;return 'encodeURIComponent(a)';<br/> 
+&emsp;&emsp;}<br/> 
+&emsp;}<br/> 
+}); <br/> 
 3. 输出：<br/>
 http%3A%2F%2Fwww.baidu.com%2Fs%3Fwd%3DsmartyMonkey
 
