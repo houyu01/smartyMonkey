@@ -2,7 +2,25 @@
 用js解析smarty语法的模板，达到服务端smarty与客户端共享同一套模板的目的<br/>
 analysis smarty's grammar with js, then you can use smarty both on server and client
 
-# 如何使用(how to use)
+# 如何使用(how to use)：
+在服务端(node环境下)我们可以直接引用smartyMonkey模块，require('src/smartyMonkey');<br/>
+该模块的导出，是一个create方法，可以创建smartyMonkey的实例<br/>
+如：<br/>
+var smartyMonkey = require('smartyMonkey');<br/>
+var sm = smartyMonkey.create();<br/>
+var tpl_fn = sm.compile(data);<br/>
+var out = tpl_fn('monkey');<br/>
+<br/>
+在客户端(浏览器环境下)，smartyMonkey会暴露一个smartyMonkey对象到执行js的上下文中，一般是window，这个对象同样有一个create方法：<br/>
+&#60;script src=&#34;.&#47;smartyMonkey.js&#34;&#62;&#60;&#47;script&#62;
+&#60;script&#62;
+var smartyMonkey = window.smartyMonkey<br/>
+var sm = smartyMonkey.create();<br/>
+var tpl_fn = sm.compile(data);<br/>
+var out = tpl_fn('monkey');<br/>
+<br/>
+&#60;&#47;script&#62;
+
 ① 输出(print)<br/>
 1. 首先，我们要写一个模板(hello.tpl):<br/>
     hello {%\*test\*%}{%$it%}
@@ -14,7 +32,7 @@ fs.readFile(<br/>
 &emsp;'./back.tpl',<br/>
 &emsp;'utf-8',<br/>
 &emsp;function (err, data) {<br/>
-&emsp;&emsp;sm = smartyMonkey.create();<br/>
+&emsp;&emsp;var sm = smartyMonkey.create();<br/>
 &emsp;&emsp;var tpl_fn = sm.compile(data);<br/>
 &emsp;&emsp;var out = tpl_fn('monkey');<br/>
 &emsp;&emsp;console.log(out);<br/>
