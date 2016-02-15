@@ -18,7 +18,7 @@ fs.readFile(<br/>
 >>var tpl_fn = sm.compile(data);<br/>
 >>var out = tpl_fn('monkey');<br/>
 >>console.log(out);<br/>
->>}<br/>
+>}<br/>
 );<br/>
 
 
