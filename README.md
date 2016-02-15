@@ -13,12 +13,12 @@ var fs = require('fs');<br/>
 fs.readFile(<br/>
 &emsp;'./back.tpl',<br/>
 &emsp;'utf-8',<br/>
->function (err, data) {<br/>
->>sm = smartyMonkey.create();<br/>
->>var tpl_fn = sm.compile(data);<br/>
->>var out = tpl_fn('monkey');<br/>
->>console.log(out);<br/>
->}<br/>
+&emsp;function (err, data) {<br/>
+&emsp;&emsp;sm = smartyMonkey.create();<br/>
+&emsp;&emsp;var tpl_fn = sm.compile(data);<br/>
+&emsp;&emsp;var out = tpl_fn('monkey');<br/>
+&emsp;&emsp;console.log(out);<br/>
+&emsp;}<br/>
 );<br/>
 
 
