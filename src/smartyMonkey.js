@@ -36,7 +36,7 @@
 
             var defaultRegxs = {
                 smConditional: regx(lDelimiter + '(\\/|(else))?\\s*(if|else)([\\s\\S]*?)' + rDelimiter),
-                smInterpolate: regx(lDelimiter + '\\$([^\\=]+?)(?:\\|@?([^\\&\\|]+))?(\\=[\\$]?([\\s\\S]+?))?' + rDelimiter),
+                smInterpolate: regx(lDelimiter + '\\$([^\\=]+?)(?:\\|@?([^\\&\\|]+))?\\s*?(\\=\\s*[\\$]?([\\s\\S]+?))?' + rDelimiter),
                 smIterate: regx(lDelimiter + '(\\/)?foreach\\s*(?:(?:\\$([\\s\\S]+?)\\s+as\\s+(?:\\$([^\\=\\>]+))?\\s*?(?:\\=\\>)?\\s*?\\$([\\s\\S]*?))|(from=[^\\%]*?))?' + rDelimiter),
                 smLoop: regx(lDelimiter + '(\\/)?for\\s*(?:\\$([\\s\\S]+)\\=\\s*([\\s\\S]+?)\\s*to\\s*([\\s\\S]+?)\\s*)?' + rDelimiter),
                 filters: '\\|\\@?(' + filters.join('|') + ')(?=[^\\{\\%]*?\\%\\})',
@@ -134,6 +134,7 @@
             var self = this;
             var set = merge(self.set, set);
             var str = tmpl;
+            //console.log(self.regxs.smInterpolate);
             str = ("var smarty={foreach: {}};var out='" +
                 (set.strip
                  ? str.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g,' ')

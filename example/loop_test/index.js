@@ -2,12 +2,12 @@
 var smartyMonkey = require('../../src/smartyMonkey');
 var fs = require('fs');
 fs.readFile(
-    './hello.tpl',
+    './loop2.tpl',
     'utf-8',
     function (err, data) {
-        sm = smartyMonkey.create();
-        var tpl_fn = sm.compile(data);
-        var out = tpl_fn('monkey');
+        var sm = smartyMonkey.create();
+        var tpl_fn = sm.compile(data, {varnames: ['loop1']});
+        var out = tpl_fn(['h', 'e', 'l', 'l', 'o']);
         console.log(out);
     }
 );
