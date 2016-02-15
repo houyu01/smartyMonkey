@@ -71,6 +71,10 @@ fs.readFile(<br/>
 
 # 扩展
 smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和处理器。<br/>
+
+我们通过在create的时候添加regxs与execFns，来增加/替换 替换规则与替换函数。可以达到对语法的扩充。
+
+
 例：<br/>
 var smartyMonkey = require('../../src/smartyMonkey');<br/>
 var fs = require('fs');<br/>
@@ -99,5 +103,3 @@ fs.readFile(<br/>
 
 输出：
 -----注释替换-----
-
-我们通过在create的时候添加regxs与execFns，来增加/替换 替换规则与替换函数。可以达到对语法的扩充。
