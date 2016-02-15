@@ -69,6 +69,35 @@ fs.readFile(<br/>
 &#60;div&#62;key is: 0&#60;&#47;div&#62; &#60;div&#62;val is: h&#60;&#47;div&#62; &#60;div&#62;key is: 1&#60;&#47;div&#62; &#60;div&#62;val is: e&#60;&#47;div&#62; &#60;div&#62;key is: 2&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 3&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 4&#60;&#47;div&#62; &#60;div&#62;val is: o&#60;&#47;div&#62;
 
 
+③ 条件语句(condition)
+模板中的代码(code in template)：
+{%if $a%}
+
+    this is a:{%$a%}
+    
+{%else%}
+
+    there is no a
+    
+{%/if%}
+
+.....
+
+var tpl_fn = sm.compile(data, {varnames: ['a']});
+
+var out = tpl_fn('aval');
+console.log('has a:', out);
+var out = tpl_fn();
+console.log('no a:', out);
+.....
+
+输出：
+
+has a:  this is a:aval
+
+no a:  there is no a
+
+
 # 扩展(extend):
 smartyMonkey支持扩展语法与处理器，也可以覆盖默认的语法和处理器。<br/>
 
