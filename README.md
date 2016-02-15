@@ -69,7 +69,7 @@ fs.readFile(<br/>
 &#60;div&#62;key is: 0&#60;&#47;div&#62; &#60;div&#62;val is: h&#60;&#47;div&#62; &#60;div&#62;key is: 1&#60;&#47;div&#62; &#60;div&#62;val is: e&#60;&#47;div&#62; &#60;div&#62;key is: 2&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 3&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 4&#60;&#47;div&#62; &#60;div&#62;val is: o&#60;&#47;div&#62;
 
 
-③ 条件语句(condition)
+③ 条件语句(condition)<br/>
 模板中的代码(code in template)：
 {%if $a%}<br/>
     this is a:{%$a%}<br/>
@@ -89,6 +89,28 @@ console.log('no a:', out);<br/>
 输出：<br/>
 has a:  this is a:aval<br/>
 no a:  there is no a<br/>
+
+④ 赋值(interpolate)<br/>
+模板(interpolate.tpl)：<br/>
+{%$b = 'test'%}<br/>
+b is :{%$b%}<br/>
+<br/>
+{%$a = $b%}<br/>
+a is :{%$a%}<br/>
+<br/>
+{%$a=$c%}<br/>
+new a is: {%$a%}<br/>
+
+调用：<br/>
+.....<br/>
+var tpl_fn = sm.compile(data, {varnames: ['c']});<br/>
+var out = tpl_fn('cval');<br/>
+console.log(out);<br/>
+.....<br/>
+输出：<br/>
+b is :test
+a is :test
+new a is: cval
 
 
 # 扩展(extend):
