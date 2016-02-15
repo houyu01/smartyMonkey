@@ -69,26 +69,26 @@ fs.readFile(<br/>
 &#60;div&#62;key is: 0&#60;&#47;div&#62; &#60;div&#62;val is: h&#60;&#47;div&#62; &#60;div&#62;key is: 1&#60;&#47;div&#62; &#60;div&#62;val is: e&#60;&#47;div&#62; &#60;div&#62;key is: 2&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 3&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;key is: 4&#60;&#47;div&#62; &#60;div&#62;val is: o&#60;&#47;div&#62;<br/>
 <br/>
 foreach的另一种写法：<br/>
-模板：<br/>
+1. 模板：<br/>
 {%foreach from=$loop1 key=key item=value name=loop1%}<br/>
 &emsp;&#60;div&#62;key is: {%$key%}&#60;&#47;div&#62;<br/>
 &emsp;&#60;div&#62;val is: {%$value%}&#60;&#47;div&#62;<br/>
 &emsp;&#60;div&#62;index is: {%$smarty.foreach.loop1.index%}&#60;&#47;div&#62;<br/>
 {%/foreach%}<br/>
-调用：<br/>
+2. 调用：<br/>
 同上<br/><br/>
-输出：<br/>
+3. 输出：<br/>
 &#60;div&#62;key is: 0&#60;&#47;div&#62; &#60;div&#62;val is: h&#60;&#47;div&#62; &#60;div&#62;index is: 0&#60;&#47;div&#62; &#60;div&#62;key is: 1&#60;&#47;div&#62; &#60;div&#62;val is: e&#60;&#47;div&#62; &#60;div&#62;index is: 1&#60;&#47;div&#62; &#60;div&#62;key is: 2&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;index is: 2&#60;&#47;div&#62; &#60;div&#62;key is: 3&#60;&#47;div&#62; &#60;div&#62;val is: l&#60;&#47;div&#62; &#60;div&#62;index is: 3&#60;&#47;div&#62; &#60;div&#62;key is: 4&#60;&#47;div&#62; &#60;div&#62;val is: o&#60;&#47;div&#62; &#60;div&#62;index is: 4&#60;&#47;div&#62;
 
 ###③ 条件语句(condition)<br/>
-模板中的代码(code in template)：
+1. 模板中的代码(code in template)：
 {%if $a%}<br/>
     this is a:{%$a%}<br/>
 {%else%}<br/>
     there is no a<br/>
 {%/if%}<br/>
 
-调用：<br/>
+2. 调用：<br/>
 .....<br/>
 var tpl_fn = sm.compile(data, {varnames: ['a']});<br/>
 var out = tpl_fn('aval');<br/>
@@ -97,12 +97,12 @@ var out = tpl_fn();<br/>
 console.log('no a:', out);<br/>
 .....<br/>
 
-输出：<br/>
+3. 输出：<br/>
 has a:  this is a:aval<br/>
 no a:  there is no a<br/>
 
 ###④ 赋值(interpolate)<br/>
-模板(interpolate.tpl)：<br/>
+1. 模板(interpolate.tpl)：<br/>
 {%$b = 'test'%}<br/>
 b is :{%$b%}<br/>
 <br/>
@@ -112,13 +112,13 @@ a is :{%$a%}<br/>
 {%$a=$c%}<br/>
 new a is: {%$a%}<br/>
 
-调用：<br/>
+2. 调用：<br/>
 .....<br/>
 var tpl_fn = sm.compile(data, {varnames: ['c']});<br/>
 var out = tpl_fn('cval');<br/>
 console.log(out);<br/>
 .....<br/>
-输出：<br/>
+3. 输出：<br/>
 b is :test
 a is :test
 new a is: cval
