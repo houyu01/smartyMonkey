@@ -1,19 +1,26 @@
 # smartyMonkey
 用js解析smarty语法的模板，达到服务端smarty与客户端共享同一套模板的目的<br/>
-analysis smarty's grammar with js, then you can use smarty both on server and client<br/>
+analysis smarty's grammar with js, then you can use smarty both on server and client<br/><br/>
 非常感谢DOT引擎，其实smartyMonkey的思路和很多写法都借鉴了DOT。<br/>
-当前版本1.0<br/>
+安装(install)：<br/>
+可以通过npm安装(you can install with npm)：<br/>
+npm install smartymonkey<br/><br/>
+或者直接下载使用。<br/>
+or just download it<br/><br/>
 
 # 如何使用(how to use)：
 在服务端(node环境下)我们可以直接引用smartyMonkey模块，require('src/smartyMonkey');<br/>
 该模块的导出，是一个create方法，可以创建smartyMonkey的实例<br/>
-如：<br/>
+in a server enviroment(node enviroment)，we can just require smartyMonkey.require('src/smartyMonkey');<br/>
+this module,export a create method, which can create a instance of smartyMonkey<br/><br/>
+如(for example)：<br/>
 var smartyMonkey = require('smartyMonkey');<br/>
 var sm = smartyMonkey.create();<br/>
 var tpl_fn = sm.compile(data);<br/>
 var out = tpl_fn('monkey');<br/>
 <br/>
 在客户端(浏览器环境下)，smartyMonkey会暴露一个smartyMonkey对象到执行js的上下文中，一般是window，这个对象同样有一个create方法：<br/>
+on a client enviroment, you include smartyMonkey in your page, and then smartyMonky will export a object to window, this object is window.smartyMonkey, it also have a create method, which can create a instance of smartyMonkey<br/><br/>
 &#60;script src=&#34;.&#47;smartyMonkey.js&#34;&#62;&#60;&#47;script&#62;<br/>
 &#60;script&#62;<br/>
 var smartyMonkey = window.smartyMonkey<br/>
@@ -206,3 +213,6 @@ fs.readFile(<br/>
 
 输出：
 -----注释替换-----
+
+如有任何问题，请及时联系
+if you has any question please contact with me
