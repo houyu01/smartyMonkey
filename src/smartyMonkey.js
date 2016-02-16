@@ -30,17 +30,19 @@
             self.filterMap = {
                 count: '.length'
             };
+            self.filterMap = merge(self.filterMap, options.filterMap);
+            
             var filters = [];
             for (var i in this.filterMap) {
                 filters.push(i);
             }
 
             var defaultRegxs = {
+                filters: regx('\\|\\@?(' + filters.join('|') + ')(?=[^\\{\\%]*?\\%\\})'),
                 smConditional: regx(lDelimiter + '(\\/|(else))?\\s*(if|else)([\\s\\S]*?)' + rDelimiter),
                 smInterpolate: regx(lDelimiter + '\\$([^\\=]+?)(?:\\|@?([^\\&\\|]+))?\\s*?(\\=\\s*[\\$]?([\\s\\S]+?))?' + rDelimiter),
                 smIterate: regx(lDelimiter + '(\\/)?foreach\\s*(?:(?:\\$([\\s\\S]+?)\\s+as\\s+(?:\\$([^\\=\\>]+))?\\s*?(?:\\=\\>)?\\s*?\\$([\\s\\S]*?))|(from=[^\\%]*?))?' + rDelimiter),
                 smLoop: regx(lDelimiter + '(\\/)?for\\s*(?:\\$([\\s\\S]+)\\=\\s*([\\s\\S]+?)\\s*to\\s*([\\s\\S]+?)\\s*)?' + rDelimiter),
-                filters: '\\|\\@?(' + filters.join('|') + ')(?=[^\\{\\%]*?\\%\\})',
                 smComments: /\{\%\*[\s\S]*?\*\%\}/g
             };
 
@@ -50,7 +52,6 @@
             };
 
             self.set = merge(defaultSet, options.set);
-            self.filterMap = merge(self.filterMap, options.filterMap);
             self.regxs = merge(defaultRegxs, options.regxs);
             self.execFns = merge(self.getDefaultExecFns(self.set), options.execFns);
         },
@@ -65,14 +66,6 @@
                 // 赋值语句转换为JS的赋值语句
                 smInterpolate: function (m, code, escaper, assign, variable) {
                     // 如果是直接输出
-                    if (escaper && self.filterMap[escaper]) {
-                        if (typeof self.filterMap[escaper] === 'function') {
-                            code = self.filterMap[escaper](code);
-                        }
-                        else {
-                            code = code + self.filterMap[escaper];
-                        }
-                    }
                     var output = cse.start + unescape(code) + ").toString()+'";
                     // 如果是赋值语句的话
                     if (assign) {
@@ -121,12 +114,26 @@
                         : ("';for(var " + key + "=" + from.replace('$', '') + ";" 
                             + key + "<=" + to.replace('$', '') + ";" + key + "++){out+='");
                     return str;
+                },
+                filters: function (m, escaper) {
+                    var code = '';
+                    if (escaper && self.filterMap[escaper]) {
+                        if (typeof self.filterMap[escaper] === 'function') {
+                            code = self.filterMap[escaper](m);
+                        }
+                        else {
+                            code = code + self.filterMap[escaper];
+                        }
+                    }
+                    //console.log('code:', code);
+                    return code;
                 }
             };
         },
         replace: function (str) {
             var regxs = this.regxs;
             var execFns = this.execFns;
+            //console.log(regxs['filters']);
             for (var reg in regxs) {
                 str = str.replace(regxs[reg] || skip, execFns[reg]);
             }
@@ -136,7 +143,6 @@
             var self = this;
             var set = merge(self.set, set);
             var str = tmpl;
-            //console.log(self.regxs.smInterpolate);
             str = ("var smarty={foreach: {}};var out='" +
                 (set.strip
                  ? str.replace(/(^|\r|\n)\t* +| +\t*(\r|\n|$)/g,' ')
